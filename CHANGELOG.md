@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Restructured repo from single `frontend/` project to multi-template scaffold layout
-- Updated Husky pre-commit hook to run checks in `angular-vanilla` workspace
+- Updated Husky pre-commit hook to run checks in both `angular-vanilla` and `angular-primeng` workspaces
 
 ### Removed
 

@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+	selector: 'app-root',
+	imports: [RouterOutlet],
+	templateUrl: './app.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly title = signal('frontend');
+	protected readonly title = signal('frontend');
 }

@@ -1,17 +1,28 @@
-cd angular-vanilla
+run_checks() {
+  local workspace="$1"
+  echo ""
+  echo "📦 Checking $workspace..."
+  cd "$workspace"
 
-# Stage 1: Static checks (fast feedback)
-echo "🔍 Running Prettier check..."
-npm run format:check || exit 1
+  # Stage 1: Static checks (fast feedback)
+  echo "🔍 Running Prettier check..."
+  npm run format:check || exit 1
 
-echo "🔍 Running TypeScript type check..."
-npm run typecheck || exit 1
+  echo "🔍 Running TypeScript type check..."
+  npm run typecheck || exit 1
 
-echo "🔍 Running ESLint..."
-npm run lint || exit 1
+  echo "🔍 Running ESLint..."
+  npm run lint || exit 1
 
-# Stage 2: Unit tests (only if static checks pass)
-echo "🧪 Running unit tests..."
-npm run test -- --watch=false || exit 1
+  # Stage 2: Unit tests (only if static checks pass)
+  echo "🧪 Running unit tests..."
+  npm run test -- --watch=false || exit 1
 
+  cd ..
+}
+
+run_checks angular-vanilla
+run_checks angular-primeng
+
+echo ""
 echo "✅ All pre-commit checks passed!"
