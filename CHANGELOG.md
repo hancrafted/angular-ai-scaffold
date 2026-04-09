@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `angular-vanilla` scaffold — consolidated to single scaffold at repository root
+
 ### Added
 
 - `nng-best-practice` skill — NN/g 10 usability heuristics and top 10 application-design mistakes as a quick-reference checklist
