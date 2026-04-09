@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Implementation plan for Home Feature (layout shell with header, sidebar, routed pages) in `plans/home-feature.md`
+- UI/UX plan with component choices, responsive strategy, accessibility, and per-phase screen/interaction details
 - Playwright e2e testing setup in `angular-primeng` with Chromium, `e2e/` test directory, and smoke test
 - `e2e` and `e2e:ui` npm scripts in `angular-primeng`
 - Husky `pre-push` hook running Playwright e2e tests before every push
