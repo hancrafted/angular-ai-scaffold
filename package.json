@@ -1,0 +1,13 @@
+{
+  "name": "angular-ai-scaffold",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Angular Project Setup with BPs, Architecture and UX Patterns ready for AI project",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0"
+  }
+}

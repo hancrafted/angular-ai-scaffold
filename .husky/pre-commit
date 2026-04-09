@@ -1,0 +1,17 @@
+cd frontend
+
+# Stage 1: Static checks (fast feedback)
+echo "🔍 Running Prettier check..."
+npm run format:check || exit 1
+
+echo "🔍 Running TypeScript type check..."
+npm run typecheck || exit 1
+
+echo "🔍 Running ESLint..."
+npm run lint || exit 1
+
+# Stage 2: Unit tests (only if static checks pass)
+echo "🧪 Running unit tests..."
+npm run test -- --watch=false || exit 1
+
+echo "✅ All pre-commit checks passed!"

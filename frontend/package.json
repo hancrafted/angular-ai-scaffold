@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "format:check": "prettier --check \"src/**/*.{ts,html,css,json}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,html,css,json}\"",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run test"
   },
   "private": true,
   "packageManager": "npm@10.9.4",
@@ -17,6 +23,8 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "lodash": "^4.18.1",
+    "luxon": "^3.7.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -24,12 +32,18 @@
     "@angular/build": "^21.2.7",
     "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.0",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.1.12",
+    "@types/lodash": "^4.17.24",
+    "@types/luxon": "^3.7.1",
+    "angular-eslint": "21.3.1",
+    "eslint": "^10.0.3",
     "jsdom": "^28.0.0",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
+    "typescript-eslint": "8.56.1",
     "vitest": "^4.0.8"
   }
 }
