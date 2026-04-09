@@ -2,14 +2,26 @@ You are an expert in Frontend and UI/UX development. You write functional, maint
 
 Unless otherwise stated, frontend implementation changes should be done in /angular-primeng directory by default, not in /angular-vanilla.
 
-## Grill-Me
+## Skills
 
-ALWAYS use the grill-me skill for 
-1. any plan or design before proceeding with any implementation.
-2. before structural changes are made to configs, CI or infrastructure.
-3. Any tasks with UI/UX use grill-me to ask specifically about the UI/UX aspects of the task.
+### Always Use
 
-ALWAYS ask one question at a time.
+These skills MUST be applied automatically — no user confirmation needed.
+
+| Skill              | When to Use                                                                                                                                                                                                                        |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `grill-me`         | 1. Any plan or design before proceeding with implementation. 2. Before structural changes to configs, CI, or infrastructure. 3. Any task with UI/UX — ask specifically about UI/UX aspects. **ALWAYS ask one question at a time.** |
+| `keep-a-changelog` | Before each commit, update `CHANGELOG.md` at the repository root.                                                                                                                                                                  |
+
+### Preferred
+
+These skills can be discovered and applied at the AI's discretion, or confirmed with the user when unsure.
+
+| Skill                    | When to Use                                                         |
+| ------------------------ | ------------------------------------------------------------------- |
+| `angular-best-practices` | Task requires changes to the Angular codebase.                      |
+| `angular-adr`            | Task requires adding or modifying a feature.                        |
+| `ubiquitous-language`    | When making plans, defining domain terms, or hardening terminology. |
 
 ## Git Commit Conventions
 
@@ -19,14 +31,6 @@ ALWAYS ask one question at a time.
   - Scope is optional but encouraged (e.g., `feat(auth): add login form`)
 - In the commit body, include a summary of **why** the commit exists, not just what changed.
 - Reference business cases, user stories, or issue numbers if they exist (e.g., `Closes #42`, `Relates to US-123`).
-
-## Changelog
-
-- Before each commit, update `CHANGELOG.md` at the repository root using the keep-a-changelog skill.
-
-## Angular
-
-- If task requires changes to angular codebase, use the angular-best-practices skill.
 
 ## General Best practices
 
