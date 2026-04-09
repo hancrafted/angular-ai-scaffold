@@ -22,6 +22,9 @@ These skills can be discovered and applied at the AI's discretion, or confirmed 
 | `angular-best-practices` | Task requires changes to the Angular codebase.                      |
 | `angular-adr`            | Task requires adding or modifying a feature.                        |
 | `ubiquitous-language`    | When making plans, defining domain terms, or hardening terminology. |
+| `ui-ux-plan`             | A plan.md exists and the feature involves UI changes or screens.    |
+| `write-ui-tests`         | A plan.md with UI/UX sections exists and e2e tests are needed.      |
+| `nng-best-practice`      | UI UX decision required for medium to large changes.                |
 
 ## Git Commit Conventions
 

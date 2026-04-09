@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `nng-best-practice` skill — NN/g 10 usability heuristics and top 10 application-design mistakes as a quick-reference checklist
+- `ui-ux-plan` skill — enriches a plan.md with global and per-phase UI/UX instructions using PrimeNG and angular-adr conventions
+- `write-ui-tests` skill — generates Playwright e2e happy-path and error-path tests from a plan.md with UI/UX sections
+- `UBIQUITOUS_LANGUAGE.md` — DDD-style glossary extracted from all skill definitions, covering skill system, Angular architecture, state, UI/UX planning, testing, and changelog domains
+
 ### Changed
 
+- Consolidated AI skill configuration to `.agents/skills/` only; removed redundant `.claude/skills/` and `.augment/skills/` copies
 - Refactored CLAUDE.md Skills section into two tables: Always Use and Preferred
 - Moved `keep-a-changelog` from standalone Changelog section into Always Use skills table
 - Added `ubiquitous-language` to Preferred skills table
