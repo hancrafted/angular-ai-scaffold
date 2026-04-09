@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `angular-vanilla` scaffold template — Angular with Tailwind CSS, no UI component library
+- `angular-primeng` scaffold template — Angular with PrimeNG UI components
+- Root-level `.prettierrc` shared formatting config
+
+### Changed
+
+- Restructured repo from single `frontend/` project to multi-template scaffold layout
+- Updated Husky pre-commit hook to run checks in `angular-vanilla` workspace
+
+### Removed
+
+- `frontend/` directory replaced by named scaffold templates (`angular-vanilla`, `angular-primeng`)
+
+---
+
+### Added (previous)
+
 - Initial Angular 21 project setup with standalone components
 - ESLint with strict clean-code rules (typescript-eslint strict + angular-eslint tsAll/templateAll)
 - Prettier formatting integration

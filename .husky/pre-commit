@@ -1,4 +1,4 @@
-cd frontend
+cd angular-vanilla
 
 # Stage 1: Static checks (fast feedback)
 echo "🔍 Running Prettier check..."
