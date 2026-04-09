@@ -20,3 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Grill-me skill best practice for AI-assisted development
 - Conventional Commits and Keep a Changelog standards
 - Pre-commit hook via Husky running prettier, typecheck, eslint, and unit tests
+
+### Changed
+
+- Refactored AI configuration to root level with skills-based architecture
+- Moved Angular-specific best practices from CLAUDE.md into `angular-best-practices` skill
+- Added `keep-a-changelog` skill for changelog maintenance
+- Simplified CLAUDE.md to a lean entry point referencing skills
