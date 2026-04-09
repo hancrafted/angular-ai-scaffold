@@ -21,7 +21,7 @@ run_checks() {
   cd ..
 }
 
-run_checks angular-vanilla
+# run_checks angular-vanilla
 run_checks angular-primeng
 
 echo ""

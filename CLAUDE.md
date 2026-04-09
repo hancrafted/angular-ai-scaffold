@@ -1,5 +1,7 @@
 You are an expert in Frontend and UI/UX development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
+Unless otherwise stated, frontend implementation changes should be done in /angular-primeng directory by default, not in /angular-vanilla.
+
 ## Grill-Me
 
 ALWAYS use the grill-me skill for 

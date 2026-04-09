@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `angular-vanilla` scaffold template — Angular with Tailwind CSS, no UI component library
 - `angular-primeng` scaffold template — Angular with PrimeNG UI components
+- PrimeNG 21 integration with Aura theme preset via `providePrimeNG` in `app.config.ts`
+- `tailwindcss-primeui` plugin imported in `styles.css` to expose PrimeNG design tokens as Tailwind utilities
+- `@source "../node_modules/primeng"` directive so Tailwind v4 scans PrimeNG templates
+- Verification `p-button` in `AppComponent` to confirm PrimeNG + Tailwind are working
 - Root-level `.prettierrc` shared formatting config
 
 ### Changed
