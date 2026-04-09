@@ -1,13 +1,13 @@
 ---
 name: angular-best-practices
-description: Angular, TypeScript, and accessibility best practices for building scalable web applications. Use when writing Angular components, services, templates, state management, or working in the frontend/ directory.
+description: Angular, TypeScript, and accessibility best practices for building scalable web applications. Use when writing Angular components, services, templates, or state management.
 ---
 
 # Angular Best Practices
 
 ## Feedback Loop
 
-Run these from the `frontend/` directory:
+Run these from the project directory:
 
 | Command | Purpose |
 |---|---|
@@ -39,7 +39,7 @@ After every code change, run `npm run verify`. Fix failures before proceeding.
 ## Components
 
 - Keep components small and focused on a single responsibility
-- Use `input()` and `output()` functions instead of decorators
+- Use `input()` and `output()` signals instead of decorators
 - Use `computed()` for derived state
 - Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
 - Prefer inline templates for small components

@@ -12,11 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactored CLAUDE.md Skills section into two tables: Always Use and Preferred
 - Moved `keep-a-changelog` from standalone Changelog section into Always Use skills table
 - Added `ubiquitous-language` to Preferred skills table
+- Standardised canonical term for `angular-primeng` and `angular-vanilla` to **scaffold**
+- Removed stale `frontend/` directory references from `angular-best-practices` skill
+- Replaced `input()`/`output()` "functions" with canonical term **signals** across all skill copies
+- Expanded "BPs" abbreviation to "Best Practices" in root README
+- Refactored `angular-primeng` and `angular-vanilla` READMEs to reflect their identity as scaffolds
 
 ### Added
 
-- `angular-vanilla` scaffold template — Angular with Tailwind CSS, no UI component library
-- `angular-primeng` scaffold template — Angular with PrimeNG UI components
+- `angular-vanilla` scaffold — Angular with Tailwind CSS, no UI component library
+- `angular-primeng` scaffold — Angular with PrimeNG UI components
 - PrimeNG 21 integration with Aura theme preset via `providePrimeNG` in `app.config.ts`
 - `tailwindcss-primeui` plugin imported in `styles.css` to expose PrimeNG design tokens as Tailwind utilities
 - `@source "../node_modules/primeng"` directive so Tailwind v4 scans PrimeNG templates
@@ -30,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- `frontend/` directory replaced by named scaffold templates (`angular-vanilla`, `angular-primeng`)
+- `frontend/` directory replaced by named scaffolds (`angular-vanilla`, `angular-primeng`)
 
 ---
 
