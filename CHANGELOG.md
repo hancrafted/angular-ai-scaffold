@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Playwright e2e testing setup in `angular-primeng` with Chromium, `e2e/` test directory, and smoke test
+- `e2e` and `e2e:ui` npm scripts in `angular-primeng`
+- Husky `pre-push` hook running Playwright e2e tests before every push
+
 ### Removed
 
 - `angular-vanilla` scaffold — consolidated to single scaffold at repository root

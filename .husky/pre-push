@@ -1,0 +1,8 @@
+echo ""
+echo "🎭 Running Playwright e2e tests in angular-primeng..."
+cd angular-primeng
+npm run e2e || exit 1
+cd ..
+
+echo ""
+echo "✅ All pre-push checks passed!"
