@@ -27,3 +27,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved Angular-specific best practices from CLAUDE.md into `angular-best-practices` skill
 - Added `keep-a-changelog` skill for changelog maintenance
 - Simplified CLAUDE.md to a lean entry point referencing skills
+- Replaced `lodash` with `lodash-es` for proper tree-shaking support
+- Updated CLAUDE.md: added all conventional commit types, clarified lodash-es usage, refined function guidelines, fixed typos
