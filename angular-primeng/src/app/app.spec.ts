@@ -19,9 +19,17 @@ interface AppHarness {
 interface ProfileMenuModelItem {
 	readonly command?: unknown;
 	readonly label?: string;
-	readonly routerLink?: string | ReadonlyArray<string>;
+	readonly routerLink?: string | readonly string[];
 	readonly url?: string;
 }
+
+const normalizeText = (value: string | null): string => {
+	if (value === null) {
+		return '';
+	}
+
+	return value.replace(/\s+/g, ' ').trim();
+};
 
 const createAppHarness = async (): Promise<AppHarness> => {
 	const fixture = TestBed.createComponent(AppComponent);
@@ -43,16 +51,15 @@ const navigateTo = async (harness: AppHarness, url: string): Promise<void> => {
 	harness.fixture.detectChanges();
 };
 
-const getDesktopNavLinks = (compiled: HTMLElement): HTMLAnchorElement[] =>
-	Array.from(compiled.querySelectorAll('[data-desktop-sidebar="true"] nav a'));
-const getMobileDrawer = (fixture: ComponentFixture<AppComponent>): Drawer =>
-	fixture.debugElement.query(By.directive(Drawer)).componentInstance as Drawer;
+const getDesktopNavLinks = (compiled: HTMLElement): HTMLAnchorElement[] => Array.from(compiled.querySelectorAll('[data-desktop-sidebar="true"] nav a'));
+const getMobileDrawer = (fixture: ComponentFixture<AppComponent>): Drawer => fixture.debugElement.query(By.directive(Drawer)).componentInstance as Drawer;
 const getMobileDrawerNavLinks = (compiled: HTMLElement): HTMLAnchorElement[] =>
 	Array.from(compiled.ownerDocument.body.querySelectorAll('[data-mobile-drawer-content="true"] nav a'));
-const getMobileMenuTrigger = (compiled: HTMLElement): HTMLButtonElement | null =>
-	compiled.querySelector('button[data-mobile-menu-trigger="true"]');
+const getMobileMenuTrigger = (compiled: HTMLElement): HTMLButtonElement | null => compiled.querySelector('button[data-mobile-menu-trigger="true"]');
+const getProfileTrigger = (compiled: HTMLElement): HTMLButtonElement | null => compiled.querySelector('button[data-profile-trigger="true"]');
 const getProfileMenu = (fixture: ComponentFixture<AppComponent>): Menu => fixture.debugElement.query(By.directive(Menu)).componentInstance as Menu;
-const getProfileMenuText = (compiled: HTMLElement): string => compiled.ownerDocument.body.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+const getProfileMenuText = (compiled: HTMLElement): string => normalizeText(compiled.ownerDocument.body.textContent);
+const getSearchInput = (compiled: HTMLElement): HTMLInputElement | null => compiled.querySelector('input[data-header-search="true"]');
 
 describe('AppComponent', () => {
 	beforeEach(async () => {
@@ -75,7 +82,7 @@ describe('AppComponent', () => {
 		await navigateTo(harness, '/');
 
 		const navLinks = getDesktopNavLinks(harness.compiled);
-		const navLabels = navLinks.map((link) => link.textContent?.replace(/\s+/g, ' ').trim());
+		const navLabels = navLinks.map((link) => normalizeText(link.textContent));
 
 		expect(harness.router.url).toBe('/home');
 		expect(harness.compiled.querySelector('header')?.textContent).toContain('Frontend');
@@ -84,8 +91,8 @@ describe('AppComponent', () => {
 		expect(navLinks[0]?.className).toContain('bg-primary-50');
 		expect(navLinks[0]?.querySelector('.pi')?.className).toContain('pi-home');
 		expect(navLinks[1]?.querySelector('.pi')?.className).toContain('pi-cog');
-		expect((harness.compiled.querySelector('input[data-header-search="true"]') as HTMLInputElement | null)?.placeholder).toBe('Search');
-		expect(harness.compiled.querySelector('button[data-profile-trigger="true"]')?.textContent).toContain('Alex Morgan');
+		expect(getSearchInput(harness.compiled)?.placeholder).toBe('Search');
+		expect(getProfileTrigger(harness.compiled)?.textContent).toContain('Alex Morgan');
 		expect(harness.compiled.querySelector('h1')?.textContent).toContain('Dashboard');
 		expect(harness.compiled.querySelector('p')?.textContent).toContain('Welcome to the default dashboard.');
 	});
@@ -96,10 +103,10 @@ describe('AppComponent', () => {
 		await navigateTo(harness, '/home');
 
 		const profileMenu = getProfileMenu(harness.fixture);
-		const menuModel = (profileMenu.model ?? []) as ReadonlyArray<ProfileMenuModelItem>;
-		const initialTriggerButton = harness.compiled.querySelector('button[data-profile-trigger="true"]') as HTMLButtonElement | null;
+		const menuModel = (profileMenu.model ?? []) as readonly ProfileMenuModelItem[];
+		const initialTriggerButton = getProfileTrigger(harness.compiled);
 
-		expect((harness.compiled.querySelector('input[data-header-search="true"]') as HTMLInputElement | null)?.placeholder).toBe('Search');
+		expect(getSearchInput(harness.compiled)?.placeholder).toBe('Search');
 		expect(initialTriggerButton?.getAttribute('aria-haspopup')).toBe('true');
 		expect(initialTriggerButton?.getAttribute('aria-expanded')).toBe('false');
 		expect(menuModel.map((item) => item.label)).toEqual(['My Profile', 'Settings', 'Logout']);
@@ -109,7 +116,7 @@ describe('AppComponent', () => {
 		await harness.fixture.whenStable();
 		harness.fixture.detectChanges();
 
-		const expandedTriggerButton = harness.compiled.querySelector('button[data-profile-trigger="true"]') as HTMLButtonElement | null;
+		const expandedTriggerButton = getProfileTrigger(harness.compiled);
 		const profileMenuText = getProfileMenuText(harness.compiled);
 
 		expect(expandedTriggerButton?.textContent).toContain('Alex Morgan');
@@ -144,7 +151,7 @@ describe('AppComponent', () => {
 		harness.fixture.detectChanges();
 
 		const drawer = getMobileDrawer(harness.fixture);
-		const mobileDrawerText = harness.compiled.ownerDocument.body.textContent ?? '';
+		const mobileDrawerText = normalizeText(harness.compiled.ownerDocument.body.textContent);
 
 		expect(mobileMenuTrigger?.className).toContain('lg:hidden');
 		expect(harness.compiled.querySelector('[data-desktop-sidebar="true"]')?.className).toContain('hidden');
@@ -152,7 +159,7 @@ describe('AppComponent', () => {
 		expect(mobileDrawerText).toContain('Navigation');
 		expect(mobileDrawerText).toContain('Dashboard');
 
-		const drawerMask = harness.compiled.ownerDocument.body.querySelector('.p-drawer-mask') as HTMLElement | null;
+		const drawerMask = harness.compiled.ownerDocument.body.querySelector<HTMLElement>('.p-drawer-mask');
 		drawerMask?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 		await harness.fixture.whenStable();
 		harness.fixture.detectChanges();

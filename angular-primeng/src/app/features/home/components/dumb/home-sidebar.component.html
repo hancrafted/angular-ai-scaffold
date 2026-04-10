@@ -1,0 +1,38 @@
+<nav aria-label="Main navigation" [attr.data-sidebar-state]="sidebarState()" [class]="sidebarClass()">
+	@if (showToggle()) {
+		<div class="mb-4 flex" [class.justify-center]="collapsed()" [class.justify-end]="!collapsed()">
+			<button
+				pButton
+				type="button"
+				data-sidebar-toggle="true"
+				[text]="true"
+				[rounded]="true"
+				[icon]="toggleIcon()"
+				[attr.aria-expanded]="!collapsed()"
+				[attr.aria-label]="toggleLabel()"
+				(click)="toggled.emit()"></button>
+		</div>
+	}
+	<ul class="flex flex-col gap-2">
+		@for (item of items(); track item.routerLink) {
+			<li>
+				<a
+					routerLinkActive="bg-primary-50 font-semibold text-primary-700"
+					tooltipPosition="right"
+					[routerLink]="item.routerLink"
+					[routerLinkActiveOptions]="{ exact: item.exact }"
+					[class]="navItemClass()"
+					[pTooltip]="item.label"
+					[tooltipDisabled]="!collapsed()"
+					(click)="itemSelected.emit()">
+					<span [class]="`${item.icon} text-base`"></span>
+					@if (collapsed()) {
+						<span class="sr-only">{{ item.label }}</span>
+					} @else {
+						<span data-nav-label="true">{{ item.label }}</span>
+					}
+				</a>
+			</li>
+		}
+	</ul>
+</nav>

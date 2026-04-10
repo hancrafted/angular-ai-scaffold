@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Home merge blockers in `angular-primeng` by updating the stale Playwright smoke test and resolving lint failures across the Home shell components and root app spec
 - `angular-primeng` Settings placeholder now matches Phase 2 scope with a heading-only page, while sidebar active state stays correct across Dashboard and Settings navigation
 - PrimeIcons stylesheet wiring in `angular-primeng` so Home sidebar icons render for Dashboard and Settings, not just their class names
 

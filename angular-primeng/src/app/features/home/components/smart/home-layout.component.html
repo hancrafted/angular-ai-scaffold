@@ -1,0 +1,24 @@
+<div class="flex min-h-screen flex-col bg-surface-50">
+	<app-home-header [logoText]="logoText" [mobileNavigationOpen]="isMobileDrawerVisible()" (mobileNavigationToggled)="toggleMobileDrawer()" />
+	<div class="flex min-h-0 flex-1">
+		<div class="hidden lg:block" data-desktop-sidebar="true">
+			<app-home-sidebar [collapsed]="isSidebarCollapsed()" [items]="navItems" (toggled)="toggleSidebar()" />
+		</div>
+		<p-drawer
+			appendTo="body"
+			[dismissible]="true"
+			[header]="mobileDrawerHeader"
+			[modal]="true"
+			[position]="mobileDrawerPosition"
+			[styleClass]="mobileDrawerStyleClass"
+			[visible]="isMobileDrawerVisible()"
+			(visibleChange)="setMobileDrawerVisible($event)">
+			<div class="h-full" data-mobile-drawer-content="true">
+				<app-home-sidebar [collapsed]="false" [items]="navItems" [showToggle]="false" (itemSelected)="closeMobileDrawer()" />
+			</div>
+		</p-drawer>
+		<main class="flex-1 overflow-y-auto p-6">
+			<router-outlet />
+		</main>
+	</div>
+</div>
