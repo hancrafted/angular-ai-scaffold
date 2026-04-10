@@ -30,53 +30,58 @@ export interface HomeNavItem {
 	standalone: true,
 	imports: [RouterLink, RouterLinkActive, ButtonDirective, Tooltip],
 	template: `
-		<nav
-			aria-label="Main navigation"
-			[attr.data-sidebar-state]="sidebarState()"
-			[class]="sidebarClass()"
-		>
-			<div class="mb-4 flex" [class.justify-center]="collapsed()" [class.justify-end]="!collapsed()">
-				<button
-					pButton
-					type="button"
-					[text]="true"
-					[rounded]="true"
-					[icon]="toggleIcon()"
-					[attr.aria-expanded]="!collapsed()"
-					[attr.aria-label]="toggleLabel()"
-					data-sidebar-toggle="true"
-					(click)="toggled.emit()"
-				></button>
-			</div>
-			<ul class="flex flex-col gap-2">
-				@for (item of items(); track item.routerLink) {
-					<li>
-						<a
-							[routerLink]="item.routerLink"
-							routerLinkActive="bg-primary-50 font-semibold text-primary-700"
-							[routerLinkActiveOptions]="{ exact: item.exact }"
-							[class]="navItemClass()"
-							[pTooltip]="item.label"
-							[tooltipDisabled]="!collapsed()"
-							tooltipPosition="right"
-						>
-							<span [class]="item.icon + ' text-base'"></span>
-							@if (collapsed()) {
-								<span class="sr-only">{{ item.label }}</span>
-							} @else {
-								<span data-nav-label="true">{{ item.label }}</span>
-							}
-						</a>
-					</li>
+			<nav
+				aria-label="Main navigation"
+				[attr.data-sidebar-state]="sidebarState()"
+				[class]="sidebarClass()"
+			>
+				@if (showToggle()) {
+					<div class="mb-4 flex" [class.justify-center]="collapsed()" [class.justify-end]="!collapsed()">
+						<button
+							pButton
+							type="button"
+							[text]="true"
+							[rounded]="true"
+							[icon]="toggleIcon()"
+							[attr.aria-expanded]="!collapsed()"
+							[attr.aria-label]="toggleLabel()"
+							data-sidebar-toggle="true"
+							(click)="toggled.emit()"
+						></button>
+					</div>
 				}
-			</ul>
-		</nav>
+				<ul class="flex flex-col gap-2">
+					@for (item of items(); track item.routerLink) {
+						<li>
+							<a
+								[routerLink]="item.routerLink"
+								routerLinkActive="bg-primary-50 font-semibold text-primary-700"
+								[routerLinkActiveOptions]="{ exact: item.exact }"
+								[class]="navItemClass()"
+								[pTooltip]="item.label"
+								[tooltipDisabled]="!collapsed()"
+								tooltipPosition="right"
+								(click)="itemSelected.emit()"
+							>
+								<span [class]="item.icon + ' text-base'"></span>
+								@if (collapsed()) {
+									<span class="sr-only">{{ item.label }}</span>
+								} @else {
+									<span data-nav-label="true">{{ item.label }}</span>
+								}
+							</a>
+						</li>
+					}
+				</ul>
+			</nav>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeSidebarComponent {
 	public readonly collapsed = input(false);
 	public readonly items = input.required<ReadonlyArray<HomeNavItem>>();
+	public readonly showToggle = input(true);
+	public readonly itemSelected = output<void>();
 	public readonly toggled = output<void>();
 
 	protected readonly navItemClass = computed(() => {

@@ -9,11 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Phase 4 Home shell mobile responsive navigation in `angular-primeng` with a hamburger-triggered PrimeNG Drawer overlay that dismisses on outside click and closes after menu selection
+- Phase 3 Home shell header UI in `angular-primeng` with a non-functional search input and profile avatar/name trigger opening a PrimeNG popup menu for My Profile, Settings, and Logout
+- Phase 2 Home shell behavior in `angular-primeng` with desktop sidebar collapse/expand toggle, icon-only mini mode, and `/home/settings` placeholder routing
+- Phase 1 Home shell in `angular-primeng` with `/` → `/home` redirect, header/sidebar layout, default dashboard page, and settings navigation item
 - Implementation plan for Home Feature (layout shell with header, sidebar, routed pages) in `plans/home-feature.md`
 - UI/UX plan with component choices, responsive strategy, accessibility, and per-phase screen/interaction details
 - Playwright e2e testing setup in `angular-primeng` with Chromium, `e2e/` test directory, and smoke test
 - `e2e` and `e2e:ui` npm scripts in `angular-primeng`
 - Husky `pre-push` hook running Playwright e2e tests before every push
+
+### Fixed
+
+- `angular-primeng` Settings placeholder now matches Phase 2 scope with a heading-only page, while sidebar active state stays correct across Dashboard and Settings navigation
+- PrimeIcons stylesheet wiring in `angular-primeng` so Home sidebar icons render for Dashboard and Settings, not just their class names
 
 ### Removed
 

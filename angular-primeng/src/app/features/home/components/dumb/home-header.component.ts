@@ -1,12 +1,16 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import type { MenuItem } from 'primeng/api';
 import { Avatar } from 'primeng/avatar';
+import { ButtonDirective } from 'primeng/button';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
 import { Menu } from 'primeng/menu';
 
 const HEADER_SEARCH_PLACEHOLDER = 'Search';
+const MOBILE_MENU_ICON_CLASS = 'pi pi-bars';
+const OPEN_MOBILE_MENU_LABEL = 'Open navigation menu';
+const CLOSE_MOBILE_MENU_LABEL = 'Close navigation menu';
 const PROFILE_MENU_ID = 'home-header-profile-menu';
 const PROFILE_DISPLAY_NAME = 'Alex Morgan';
 const PROFILE_AVATAR_LABEL = 'AM';
@@ -20,13 +24,25 @@ const PROFILE_MENU_ITEMS: MenuItem[] = [
 @Component({
 	selector: 'app-home-header',
 	standalone: true,
-	imports: [Avatar, IconField, InputIcon, InputText, Menu],
+	imports: [Avatar, ButtonDirective, IconField, InputIcon, InputText, Menu],
 	template: `
-		<header class="flex h-14 items-center gap-4 border-b border-surface-200 bg-surface-0 px-6 shadow-sm">
-			<div class="flex min-w-0 items-center">
+		<header class="flex h-14 items-center gap-4 border-b border-surface-200 bg-surface-0 px-4 shadow-sm lg:px-6">
+			<div class="flex min-w-0 items-center gap-2">
+				<button
+					pButton
+					type="button"
+					[text]="true"
+					[rounded]="true"
+					[icon]="mobileMenuIcon"
+					class="lg:hidden"
+					[attr.aria-expanded]="mobileNavigationOpen()"
+					[attr.aria-label]="mobileMenuLabel()"
+					data-mobile-menu-trigger="true"
+					(click)="mobileNavigationToggled.emit()"
+				></button>
 				<span class="text-lg font-semibold text-surface-900">{{ logoText() }}</span>
 			</div>
-			<div class="flex flex-1 justify-center">
+			<div class="flex min-w-0 flex-1 justify-center">
 				<label class="sr-only" for="home-header-search">Search</label>
 				<p-iconfield class="w-full max-w-md" iconPosition="left">
 					<p-inputicon class="pi pi-search" />
@@ -70,7 +86,13 @@ const PROFILE_MENU_ITEMS: MenuItem[] = [
 })
 export class HomeHeaderComponent {
 	public readonly logoText = input.required<string>();
+	public readonly mobileNavigationOpen = input(false);
+	public readonly mobileNavigationToggled = output<void>();
 	protected readonly isProfileMenuOpen = signal(false);
+	protected readonly mobileMenuIcon = MOBILE_MENU_ICON_CLASS;
+	protected readonly mobileMenuLabel = computed(() =>
+		this.mobileNavigationOpen() ? CLOSE_MOBILE_MENU_LABEL : OPEN_MOBILE_MENU_LABEL,
+	);
 	protected readonly profileAvatarLabel = PROFILE_AVATAR_LABEL;
 	protected readonly profileDisplayName = PROFILE_DISPLAY_NAME;
 	protected readonly profileMenuId = PROFILE_MENU_ID;
